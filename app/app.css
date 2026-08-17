@@ -1,0 +1,42 @@
+/*
+ * Тема повторяет токены MyShows из превью вёрстки (scrobble-api-preview.html):
+ * акцент — фирменный красный #c00, текст — PT Sans, заголовки — Geologica.
+ * Шрифты подтягивает @nuxt/fonts из Google Fonts, ставить их руками не нужно.
+ */
+
+/* `static` обязателен: без него Tailwind вырезает неиспользованные напрямую оттенки,
+   а Nuxt UI берёт 500 для светлой темы и 400 для тёмной через var() — и остаётся ни с чем. */
+@theme static {
+  --font-sans: 'PT Sans', 'Arial', 'Helvetica', sans-serif;
+  --font-display: 'Geologica', 'PT Sans', 'Arial', sans-serif;
+
+  /* Фирменный красный. 500 — цвет бренда (светлая тема),
+     400 — осветлённый вариант, который Nuxt UI берёт в тёмной. */
+  --color-myshows-50: #fff1f1;
+  --color-myshows-100: #ffdfdf;
+  --color-myshows-200: #ffc5c5;
+  --color-myshows-300: #ff9b9b;
+  --color-myshows-400: #f96a6a;
+  --color-myshows-500: #cc0000;
+  --color-myshows-600: #b80000;
+  --color-myshows-700: #990000;
+  --color-myshows-800: #7d0505;
+  --color-myshows-900: #680b0b;
+  --color-myshows-950: #380000;
+}
+
+/* Заголовки — Geologica, как в системе MyShows (--font-family-number). */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+/* Красная полоса под шапкой — узнаваемая деталь myshows.me. */
+header {
+  border-bottom-color: var(--color-myshows-500);
+}

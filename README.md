@@ -1,1 +1,67 @@
-# myshows-scrobbler-api
+# MyShows Scrobble API — документация
+
+Документация Scrobble API MyShows, собранная на [Docus](https://docus.dev) и
+опубликованная на GitHub Pages: **https://andreyshivas.github.io/myshows-scrobbler-api/**
+
+Референс-клиент этого API — [myshowsme/myshows-scrobbler](https://github.com/myshowsme/myshows-scrobbler).
+
+## Локальная разработка
+
+```bash
+npm install
+npm run dev      # http://localhost:3000
+```
+
+Сборка статики и предпросмотр:
+
+```bash
+npm run generate
+npx serve .output/public
+```
+
+## Структура
+
+```
+content/                    # весь текст документации
+├── index.md                # лендинг (/)
+├── 1.start/                # Начало: введение, быстрый старт, аутентификация
+├── 2.scrobbling/           # Скробблинг: цикл, эндпоинты, запрос, ids, аниме, метаданные, ответ
+└── 3.rules/                # Правила: ошибки, лимиты, совместимость с Trakt и Simkl
+app/
+├── app.config.ts           # заголовок, SEO, ссылки в TOC, цвета
+└── app.css                 # тема: фирменный красный #c00, PT Sans + Geologica
+.github/workflows/deploy.yml
+```
+
+Порядок страниц в навигации задаётся числовым префиксом файла, заголовок и иконка
+раздела — в `.navigation.yml`. Префиксы и расширения в URL не попадают: файл
+`content/2.scrobbling/4.ids.md` доступен по адресу `/scrobbling/ids`.
+
+## Деплой
+
+Пуш в `main` запускает [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml):
+`nuxt generate` собирает статику в `.output/public`, дальше её публикует
+`actions/deploy-pages`.
+
+Базовый путь `/myshows-scrobbler-api/` не зашит в конфиг — он приходит из
+`NUXT_APP_BASE_URL`, который workflow берёт у `actions/configure-pages`. Поэтому
+локально сайт открывается в корне, а на Pages — в подпапке, без правок кода.
+
+Перед первым деплоем в **Settings → Pages** нужно выбрать **Source: GitHub Actions**.
+
+## Исходники
+
+Документация написана на основе двух черновиков, которые лежат в корне репозитория:
+
+- `scrobble-api.md` — исходный текст;
+- `scrobble-api-preview.html` — превью вёрстки, из которого взяты структура
+  навигации и фирменные токены темы.
+
+Актуальный текст теперь живёт в `content/` — черновики оставлены только как история и
+больше не обновляются.
+
+## Открытые вопросы
+
+Блоки «Уточнить на бэкенде» на страницах — не заготовки, а список вопросов к команде
+сервера. Пока на них нет ответов, соответствующие разделы описывают поведение так, как
+оно видно со стороны клиента, а не как спецификацию.
