@@ -8,15 +8,15 @@
 ## Локальная разработка
 
 ```bash
-npm install
-npm run dev      # http://localhost:3000
+pnpm install
+pnpm dev         # http://localhost:3000
 ```
 
 Сборка статики и предпросмотр:
 
 ```bash
-npm run generate
-npx serve .output/public
+pnpm generate
+pnpx serve .output/public
 ```
 
 ## Структура
@@ -40,7 +40,7 @@ app/
 ## Деплой
 
 Пуш в `main` запускает [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml):
-`nuxt generate` собирает статику в `.output/public`, дальше её публикует
+`pnpm generate` собирает статику в `.output/public`, дальше её публикует
 `actions/deploy-pages`.
 
 Базовый путь `/myshows-scrobbler-api/` не зашит в конфиг — он приходит из
